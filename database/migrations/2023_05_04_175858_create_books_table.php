@@ -17,6 +17,8 @@ return new class extends Migration
             $table->string('author');
             $table->text('description')->nullable();
             $table->string('image_url')->nullable();
+            $table->unsignedBigInteger('user_id');
+            $table->foreign('user_id')->references('id')->on('users');
             $table->timestamps();
         });
     }
