@@ -11,10 +11,12 @@ class BooksController extends Controller
 
 
     public function store(Request $request){
+        $user_id = 1;
         $book = new Book;
         $book->title = $request->input('title');
         $book->author = $request->input('author');
         $book->description = $request->input('description');
+        $book->user_id = $ruser_id;
         $book->save();
         return response()->json(['message' => 'Book created', 'book' => $book], 201);
     }
