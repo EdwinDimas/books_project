@@ -34,10 +34,22 @@ Route::group([
 
 });
 
+Route::group([
+    'middleware' => 'api',
+], function ($router) {
+    Route::post('/books', [BooksController::class, 'store']);
+    Route::get('/books', [BooksController::class, 'index']);
+    Route::delete('/books/{book}', [BooksController::class, 'destroy']);
+});
 
-Route::post('/books', [BooksController::class, 'store']);
-Route::get('/books', [BooksController::class, 'index']);
-Route::delete('/books/{book}', [BooksController::class, 'destroy']);
+
+Route::get('/unauthorized', function () {
+    return response()->json(['errors'=> 'unauthorized'], 401);
+})->name('unauthorized');
+ 
+
+
+
 
 
 
